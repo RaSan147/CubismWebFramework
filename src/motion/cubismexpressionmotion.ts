@@ -223,6 +223,9 @@ export class CubismExpressionMotion extends ACubismMotion {
   }
 
   protected parse(json: CubismSpec.ExpressionJSON) {
+    if(!json){
+      return;
+    }
     this.setFadeInTime(
       json.FadeInTime != undefined ? json.FadeInTime : DefaultFadeTime
     ); // フェードイン

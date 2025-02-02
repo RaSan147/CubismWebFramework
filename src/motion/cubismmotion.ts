@@ -715,6 +715,9 @@ export class CubismMotion extends ACubismMotion {
     this._motionData = new CubismMotionData();
 
     const json: CubismMotionJson = new CubismMotionJson(motionJson);
+    if (!json) {
+      return;
+    }
 
     this._motionData.duration = json.getMotionDuration();
     this._motionData.loop = json.isMotionLoop();
