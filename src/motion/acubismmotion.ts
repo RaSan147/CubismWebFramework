@@ -64,6 +64,35 @@ export abstract class ACubismMotion {
         // duration == -1 の場合はループする
       }
     }
+    const fadeWeight = this.updateFadeWeight(motionQueueEntry, userTimeSeconds);
+    //---- 全てのパラメータIDをループする ----
+    this.doUpdateParameters(
+      model,
+      userTimeSeconds,
+      fadeWeight,
+      motionQueueEntry
+    );
+    // 後処理
+    // 終了時刻を過ぎたら終了フラグを立てる(CubismMotionQueueManager)
+    if (
+      motionQueueEntry.getEndTime() > 0 &&
+      motionQueueEntry.getEndTime() < userTimeSeconds
+    ) {
+      motionQueueEntry.setIsFinished(true); // 終了
+    }
+  }
+  /**
+   * @brief モデルのウェイト更新
+   *
+   * モーションのウェイトを更新する。
+   *
+   * @param[in]   motionQueueEntry    CubismMotionQueueManagerで管理されているモーション
+   * @param[in]   userTimeSeconds     デルタ時間の積算値[秒]
+   */
+  public updateFadeWeight(
+    motionQueueEntry: CubismMotionQueueEntry,
+    userTimeSeconds: number
+  ): number {
 
     let fadeWeight: number = this._weight; // 現在の値と掛け合わせる割合
 
@@ -73,17 +102,17 @@ export abstract class ACubismMotion {
       this._fadeInSeconds == 0.0
         ? 1.0
         : CubismMath.getEasingSine(
-            (userTimeSeconds - motionQueueEntry.getFadeInStartTime()) /
-              this._fadeInSeconds
-          );
+          (userTimeSeconds - motionQueueEntry.getFadeInStartTime()) /
+          this._fadeInSeconds
+        );
 
     const fadeOut: number =
       this._fadeOutSeconds == 0.0 || motionQueueEntry.getEndTime() < 0.0
         ? 1.0
         : CubismMath.getEasingSine(
-            (motionQueueEntry.getEndTime() - userTimeSeconds) /
-              this._fadeOutSeconds
-          );
+          (motionQueueEntry.getEndTime() - userTimeSeconds) /
+          this._fadeOutSeconds
+        );
 
     fadeWeight = fadeWeight * fadeIn * fadeOut;
 
@@ -91,22 +120,7 @@ export abstract class ACubismMotion {
 
     CSM_ASSERT(0.0 <= fadeWeight && fadeWeight <= 1.0);
 
-    //---- 全てのパラメータIDをループする ----
-    this.doUpdateParameters(
-      model,
-      userTimeSeconds,
-      fadeWeight,
-      motionQueueEntry
-    );
-
-    // 後処理
-    // 終了時刻を過ぎたら終了フラグを立てる(CubismMotionQueueManager)
-    if (
-      motionQueueEntry.getEndTime() > 0 &&
-      motionQueueEntry.getEndTime() < userTimeSeconds
-    ) {
-      motionQueueEntry.setIsFinished(true); // 終了
-    }
+    return fadeWeight;
   }
 
   /**

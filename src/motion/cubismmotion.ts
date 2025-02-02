@@ -210,7 +210,7 @@ function evaluateCurve(
     // Get first point of next segment.
     pointPosition =
       motionData.segments[i].basePointIndex +
-      (motionData.segments[i].segmentType ==
+      ((motionData.segments[i].segmentType as CubismMotionSegmentType) ==
       CubismMotionSegmentType.CubismMotionSegmentType_Bezier
         ? 3
         : 1);

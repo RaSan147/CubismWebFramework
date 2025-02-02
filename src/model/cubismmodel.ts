@@ -833,6 +833,12 @@ export class CubismModel {
     return this._model.parameters.defaultValues[parameterIndex];
   }
 
+  public getParameterId(parameterIndex: number): number {
+    return CubismFramework.getIdManager().getId(
+      this._model.parameters.ids[parameterIndex]
+    );
+  }
+
   /**
    * パラメータの値の取得
    * @param parameterIndex    パラメータのインデックス
