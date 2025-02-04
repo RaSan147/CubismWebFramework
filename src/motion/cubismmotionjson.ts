@@ -43,7 +43,7 @@ export class CubismMotionJson {
     return this._json.Meta.Loop || false;
   }
 
-  public getEvaluationOptionFlag(flagType: number): boolean {
+  public getEvaluationOptionFlag(flagType: EvaluationOptionFlag): boolean {
     if (
       EvaluationOptionFlag.EvaluationOptionFlag_AreBeziersRistricted == flagType
     ) {

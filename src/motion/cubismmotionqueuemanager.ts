@@ -166,9 +166,20 @@ export class CubismMotionQueueManager {
     this._motions = [];
   }
 
+   /**
+   * @brief CubismMotionQueueEntryの配列の取得
+   *
+   * CubismMotionQueueEntryの配列を取得する。
+   *
+   * @return  CubismMotionQueueEntryの配列へのポインタ
+   * @retval  NULL   見つからなかった
+   */
+   public getCubismMotionQueueEntries(): CubismMotionQueueEntry[] {
+    return this._motions;
+  }
+
   /**
    * 指定したCubismMotionQueueEntryの取得
-
    * @param   motionQueueEntryNumber  モーションの識別番号
    * @return  指定したCubismMotionQueueEntry
    * @return  null   見つからなかった

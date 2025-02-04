@@ -24,6 +24,9 @@ export class CubismPose {
    */
   public static create(pose3json: CubismSpec.PoseJSON): CubismPose {
     const ret: CubismPose = new CubismPose();
+    if(!pose3json){
+      return null
+    }
 
     // フェード時間の指定
     if (typeof pose3json.FadeInTime === 'number') {

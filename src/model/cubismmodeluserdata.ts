@@ -61,6 +61,9 @@ export class CubismModelUserData {
    * @param size      バッファのサイズ
    */
   public parseUserData(data: CubismSpec.UserDataJSON, size: number): void {
+    if(!data){
+      return;
+    }
     const json: CubismModelUserDataJson = new CubismModelUserDataJson(
       data,
       size
