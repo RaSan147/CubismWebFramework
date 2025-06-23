@@ -11,8 +11,8 @@ import { CubismModel } from '../model/cubismmodel';
 import { CubismClippingContext, CubismTextureColor } from './cubismrenderer';
 import { CubismLogError, CubismLogWarning } from '../utils/cubismdebug';
 const ColorChannelCount = 4; // 実験時に1チャンネルの場合は1、RGBだけの場合は3、アルファも含める場合は4
-const ClippingMaskMaxCountOnDefault = 36; // 通常のフレームバッファ一枚あたりのマスク最大数
-const ClippingMaskMaxCountOnMultiRenderTexture = 32; // フレームバッファが2枚以上ある場合のフレームバッファ一枚あたりのマスク最大数
+const ClippingMaskMaxCountOnDefault = 999; // 通常のフレームバッファ一枚あたりのマスク最大数
+const ClippingMaskMaxCountOnMultiRenderTexture = 999; // フレームバッファが2枚以上ある場合のフレームバッファ一枚あたりのマスク最大数
 export type ClippingContextConstructor<
   T_ClippingContext extends CubismClippingContext
 > = new (
