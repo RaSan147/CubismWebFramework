@@ -21,13 +21,12 @@ Please check the [license](LICENSE.md) before using this SDK.
 
 ### Node.js
 
-* 20.1.0
-* 18.16.0
-* 16.20.0
+* 21.2.0
+* 20.10.0
 
 ### TypeScript
 
-5.0.4
+5.3.2
 
 
 ## Development environment construction
@@ -155,9 +154,9 @@ We are regularly checking issue-reports and feature requests at Live2D Community
 We're also interested in your feedback for the future of the SDK. You can submit a suggestion or feature request at Live2D Community. To make this process more effective, we're asking that you include more information to help define them more clearly.
 
 
-## Community
+## Forum
 
-If you want to suggest or ask questions about how to use the Cubism SDK between users, please use the community.
+If you want to suggest or ask questions about how to use the Cubism SDK between users, please use the forum.
 
-- [Live2D community](https://community.live2d.com/)
-- [Live2D 公式コミュニティ (Japanese)](https://creatorsforum.live2d.com/)
+- [Live2D Creator's Forum](https://community.live2d.com/)
+- [Live2D 公式クリエイターズフォーラム (Japanese)](https://creatorsforum.live2d.com/)

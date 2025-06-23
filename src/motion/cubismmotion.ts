@@ -210,7 +210,7 @@ function evaluateCurve(
     // Get first point of next segment.
     pointPosition =
       motionData.segments[i].basePointIndex +
-      (motionData.segments[i].segmentType ==
+      ((motionData.segments[i].segmentType as CubismMotionSegmentType) ==
       CubismMotionSegmentType.CubismMotionSegmentType_Bezier
         ? 3
         : 1);
@@ -715,6 +715,9 @@ export class CubismMotion extends ACubismMotion {
     this._motionData = new CubismMotionData();
 
     const json: CubismMotionJson = new CubismMotionJson(motionJson);
+    if (!json) {
+      return;
+    }
 
     this._motionData.duration = json.getMotionDuration();
     this._motionData.loop = json.isMotionLoop();
@@ -820,7 +823,9 @@ export class CubismMotion extends ACubismMotion {
           curveCount,
           segmentPosition
         );
-        switch (segment) {
+
+        const segmentType: CubismMotionSegmentType = segment;
+        switch (segmentType) {
           case CubismMotionSegmentType.CubismMotionSegmentType_Linear: {
             this._motionData.segments[totalSegmentCount].segmentType =
               CubismMotionSegmentType.CubismMotionSegmentType_Linear;
